@@ -61,4 +61,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Laporan::class);
     }
+
+    /**
+     * Check if user has specific role
+     *
+     * @param string $role
+     * @return boolean
+     */
+    public function hasRole($role)
+    {
+        return $this->role === $role;
+    }
 }

@@ -23,10 +23,23 @@
                 </div>
             </div>
             <div class="hidden md:flex space-x-2">
-                <a href="{{ route('register') }}"
-                    class="inline-flex items-center rounded-full bg-green-500 px-5 py-2 text-sm font-medium text-white hover:bg-green-600 transition">Daftar</a>
-                <a href="{{ route('login') }}"
-                    class="inline-flex items-center rounded-full bg-green-100 border border-green-500 px-5 py-2 text-sm font-medium text-green-600 hover:bg-green-200 transition">Masuk</a>
+                @auth
+                    @if(auth()->user()->hasRole('owner'))
+                        <a href="{{ route('owner.dashboard') }}"
+                            class="inline-flex items-center rounded-full bg-green-500 px-5 py-2 text-sm font-medium text-white hover:bg-green-600 transition">Dashboard</a>
+                    @elseif(auth()->user()->hasRole('petani'))
+                        <a href="{{ route('petani.dashboard') }}"
+                            class="inline-flex items-center rounded-full bg-green-500 px-5 py-2 text-sm font-medium text-white hover:bg-green-600 transition">Dashboard</a>
+                    @elseif(auth()->user()->hasRole('pegawai'))
+                        <a href="{{ route('pegawai.dashboard') }}"
+                            class="inline-flex items-center rounded-full bg-green-500 px-5 py-2 text-sm font-medium text-white hover:bg-green-600 transition">Dashboard</a>
+                    @endif
+                @else
+                    <a href="{{ route('register') }}"
+                        class="inline-flex items-center rounded-full bg-green-500 px-5 py-2 text-sm font-medium text-white hover:bg-green-600 transition">Daftar</a>
+                    <a href="{{ route('login') }}"
+                        class="inline-flex items-center rounded-full bg-green-100 border border-green-500 px-5 py-2 text-sm font-medium text-green-600 hover:bg-green-200 transition">Masuk</a>
+                @endauth
             </div>
             <!-- Hamburger -->
             <div class="md:hidden">
@@ -49,10 +62,23 @@
         <a href="#layanan" class="block text-gray-700 hover:text-green-600 transition">Layanan</a>
         <a href="#kontak" class="block text-gray-700 hover:text-green-600 transition">Kontak</a>
         <div class="pt-2 space-y-2">
-            <a href="{{ route('register') }}"
-                class="block w-full bg-green-500 text-center rounded-full py-2 text-white font-medium">Daftar</a>
-            <a href="{{ route('login') }}"
-                class="block w-full bg-green-100 border border-green-500 text-center rounded-full py-2 text-green-600 font-medium">Masuk</a>
+            @auth
+                @if(auth()->user()->hasRole('owner'))
+                    <a href="{{ route('owner.dashboard') }}"
+                        class="block w-full bg-green-500 text-center rounded-full py-2 text-white font-medium">Dashboard</a>
+                @elseif(auth()->user()->hasRole('petani'))
+                    <a href="{{ route('petani.dashboard') }}"
+                        class="block w-full bg-green-500 text-center rounded-full py-2 text-white font-medium">Dashboard</a>
+                @elseif(auth()->user()->hasRole('pegawai'))
+                    <a href="{{ route('pegawai.dashboard') }}"
+                        class="block w-full bg-green-500 text-center rounded-full py-2 text-white font-medium">Dashboard</a>
+                @endif
+            @else
+                <a href="{{ route('register') }}"
+                    class="block w-full bg-green-500 text-center rounded-full py-2 text-white font-medium">Daftar</a>
+                <a href="{{ route('login') }}"
+                    class="block w-full bg-green-100 border border-green-500 text-center rounded-full py-2 text-green-600 font-medium">Masuk</a>
+            @endauth
         </div>
     </div>
 </nav>

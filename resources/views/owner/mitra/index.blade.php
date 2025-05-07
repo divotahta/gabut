@@ -194,22 +194,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
     const kabupatenFilter = document.getElementById('kabupatenFilter');
     const statusFilter = document.getElementById('statusFilter');
-    let searchTimeout;
-
-    // Fungsi untuk melakukan pencarian
-    function performSearch() {
-        searchForm.submit();
-    }
-
-    // Event listener untuk input pencarian
-    searchInput.addEventListener('input', function() {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(performSearch, 500);
-    });
 
     // Event listener untuk filter kabupaten dan status
-    kabupatenFilter.addEventListener('change', performSearch);
-    statusFilter.addEventListener('change', performSearch);
+    kabupatenFilter.addEventListener('change', function() {
+        searchForm.submit();
+    });
+    
+    statusFilter.addEventListener('change', function() {
+        searchForm.submit();
+    });
 });
 </script>
 @endpush

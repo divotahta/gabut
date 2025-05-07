@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('telepon');
             $table->decimal('luas_lahan', 10, 2);
-            $table->integer('pohon')->nullable();
+            $table->integer('jumlah_pohon')->nullable();
             $table->string('provinsi');
             $table->string('kabupaten');
             $table->string('kecamatan');
